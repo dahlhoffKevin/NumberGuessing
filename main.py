@@ -7,7 +7,7 @@ from sql import Sql
 app = Flask(__name__)
 count = 0
 
-setup = Sql.SqlSetup('test.db')
+setup = Sql.SqlSetup('numberGuessing.db')
 setup.createDatabaseFromFile()
 
 @app.route("/")

@@ -3,8 +3,8 @@
         {
             "previewLimit": 50,
             "driver": "SQLite",
-            "name": "test",
-            "database": "test.db"
+            "name": "NumberGuessing",
+            "database": "numberGuessing.db"
         }
     ],
     "sqltools.useNodeRuntime": true

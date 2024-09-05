@@ -23,12 +23,14 @@ class SqlSetup:
     def createDatabaseFromFile(self):
         print(f'Working in: {os.getcwd()}')
         try:
-            self.conn = sqlite3.connect(self.db)
+            self.conn = sqlite3.connect(f'{os.getcwd()}/sql/{self.db}')
             self.cursor = self.conn.cursor()
-            
-            with open('/Users/kevindahlhoff/Documents/Schule/LF10a/Python Flask/sql/main.sql', 'r') as sql_file:
+
+            #sql script lesen
+            with open(f'{os.getcwd()}/sql/main.sql', 'r') as sql_file:
                 sql_script = sql_file.read()
-                
+            
+            #sql script ausführen
             self.cursor.executescript(sql_script)
             self.conn.commit()
             self.conn.close()

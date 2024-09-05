@@ -7,6 +7,9 @@ from sql import Sql
 app = Flask(__name__)
 count = 0
 
+setup = Sql.SqlSetup('test.db')
+setup.createDatabaseFromFile()
+
 @app.route("/")
 def hello_world():
     if 'playGameBtn' in request.form:

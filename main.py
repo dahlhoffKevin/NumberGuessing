@@ -12,13 +12,4 @@ setup.createDatabaseFromFile()
 
 @app.route("/")
 def hello_world():
-    if 'playGameBtn' in request.form:
-        return render_template('test.html')
     return render_template('index.html')
-
-@app.route("/doguess", methods=['POST'])
-def test():
-    if request.method == 'POST':
-        if 'randomNumberSubmitBtn' in request.form:
-            count += 1
-    return render_template("index.html")

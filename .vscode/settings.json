@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "NumberGuessing",
+            "database": "numberGuessing.db"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}

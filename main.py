@@ -1,20 +1,15 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+from sql import Sql
 # from markupsafe import escape
 
 app = Flask(__name__)
 count = 0
 
-@app.route("/", methods=['POST'])
-def hello_world():
-    if 'playGameBtn' in request.form:
-        return render_template('index.html')
-    return render_template('start.html')
+setup = Sql.SqlSetup('numberGuessing.db')
+setup.createDatabaseFromFile()
 
-@app.route("/doguess", methods=['POST'])
-def test():
-    if request.method == 'POST':
-        if 'randomNumberSubmitBtn' in request.form:
-            count += 1
-    return render_template("index.html")
+@app.route("/")
+def hello_world():
+    return render_template('index.html')

@@ -4,10 +4,10 @@ import hashlib
 class Security:
     def __init__(self, key=None):
         if key is None:
-            self.key = self._load_key()
+            self.__key = self._load_key()
         else:
-            self.key = key.encode()
-        self.cipher_suite = Fernet(self.key)
+            self.__key = key.encode()
+        self.__cipher_suite = Fernet(self.__key)
 
     def _write_key(self):
         """Generiert einen Schluessel und speichert ihn in einer Datei."""
@@ -20,16 +20,16 @@ class Security:
         return open("key.key", "rb").read()
 
     def encrypt(self, data: str) -> str:
-        encrypted_data = self.cipher_suite.encrypt(data.encode())
+        encrypted_data = self.__cipher_suite.encrypt(data.encode())
         return encrypted_data.decode()
 
     def decrypt(self, encrypted_data: str) -> str:
-        decrypted_data = self.cipher_suite.decrypt(encrypted_data.encode())
+        decrypted_data = self.__cipher_suite.decrypt(encrypted_data.encode())
         return decrypted_data.decode()
 
     def is_encrypted(self, data: str) -> bool:
         try:
-            self.cipher_suite.decrypt(data.encode())
+            self.__cipher_suite.decrypt(data.encode())
             return True
         except:
             return False

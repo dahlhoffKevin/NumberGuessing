@@ -35,10 +35,12 @@ class SqlSetup:
     def createDatabaseFromFile(self):
         print(f'Working in: {os.getcwd()}')
         try:
+            print('Creating database...')
             self.conn = sqlite3.connect(f'{os.getcwd()}/sql/{self.db}')
             self.cursor = self.conn.cursor()
 
             #sql script lesen
+            print('Creating tables in database...')
             with open(f'{os.getcwd()}/sql/main.sql', 'r') as sql_file:
                 sql_script = sql_file.read()
             
@@ -46,5 +48,6 @@ class SqlSetup:
             self.cursor.executescript(sql_script)
             self.conn.commit()
             self.conn.close()
+            print('Database created successfully!')
         except Exception as ex:
-            print(f'Error while reading sql script: {ex}')
+            print(f'Error while creating database: {ex}')

@@ -40,18 +40,18 @@ class Security:
         hash_object = hashlib.sha256(data.encode())
         return hash_object.hexdigest()
     
-if __name__ == "__main__":
-    security = Security()
-    original_data = "Geheime Nachricht"
-    encrypted_data = security.encrypt(original_data)
-    print(f"Verschluesselte Daten: {encrypted_data}")
+# if __name__ == "__main__":
+#     security = Security()
+#     original_data = "Geheime Nachricht"
+#     encrypted_data = security.encrypt(original_data)
+#     print(f"Verschluesselte Daten: {encrypted_data}")
 
-    decrypted_data = security.decrypt(encrypted_data)
-    print(f"Entschluesselte Daten: {decrypted_data}")
+#     decrypted_data = security.decrypt(encrypted_data)
+#     print(f"Entschluesselte Daten: {decrypted_data}")
 
-    print(f"Ist verschluesselt: {security.is_encrypted(encrypted_data)}")
-    print(f"Ist verschluesselt: {security.is_encrypted(original_data)}")
+#     print(f"Ist verschluesselt: {security.is_encrypted(encrypted_data)}")
+#     print(f"Ist verschluesselt: {security.is_encrypted(original_data)}")
 
-    # Verwendung der statischen Methode BuildHash
-    hash_value = Security.BuildHash(original_data)
-    print(f"Hash-Wert: {hash_value}")    
+#     # Verwendung der statischen Methode BuildHash
+#     hash_value = Security.BuildHash(original_data)
+#     print(f"Hash-Wert: {hash_value}")    

@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS Player(
     PlayerId TEXT NOT NULL PRIMARY KEY,
     Playername TEXT,
+    MailAdress TEXT,
     Password TEXT
 );
 

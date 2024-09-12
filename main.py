@@ -1,24 +1,18 @@
-from flask import Flask
-from flask import render_template
-from flask import request
-from sql import Sql
-# from markupsafe import escape
+from flask import Flask, render_template, request, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
-app = Flask(__name__)
-count = 0
+app = Flask(__name__, static_folder='static')
 
-setup = Sql.SqlSetup('numberGuessing.db')
-setup.createDatabaseFromFile()
-
-@app.route("/")
+@app.route('/')
 def hello_world():
-    if 'playGameBtn' in request.form:
-        return render_template('test.html')
     return render_template('index.html')
 
-@app.route("/doguess", methods=['POST'])
-def test():
-    if request.method == 'POST':
-        if 'randomNumberSubmitBtn' in request.form:
-            count += 1
-    return render_template("index.html")
+@app.route('/submit', methods=['POST'])
+def submit_attempt():
+    # implement code
+
+    return redirect(url_for('hello_world'))
+
+if __name__ == '__main__':
+    app.run(debug=True)

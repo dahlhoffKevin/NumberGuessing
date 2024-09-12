@@ -14,6 +14,18 @@ class SQL:
         except:
             return "SQL.open_conn: Error while opening database connection"
         
+    def create(self):
+        pass
+
+    def read(self):
+        pass
+
+    def update(self):
+        pass
+
+    def delete(self):
+        pass
+        
 class SqlSetup:
     def __init__(self, db):
         self.db = db

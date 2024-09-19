@@ -14,7 +14,7 @@
                 {% if category == 'success' %}
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <button title="This button closes the application" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 {% endif %}
             {% endfor %}
@@ -25,21 +25,21 @@
             <h4>Player: {{ playername }}</h4>
             <div class="container">
                 <div class="character">
-                    <img src="{{ url_for('static', filename='icons1.png') }}">
+                    <img alt="I comment your result" src="{{ url_for('static', filename='icons1.png') }}">
                     <div class="speech-bubble">
-                        <input type="text" value="zu klein!" id="result" readonly>
+                        <input title="Here, you can see a result comment" type="text" value="zu klein!" id="result" readonly>
                     </div>
                 </div>
                 <div class="character">
-                    <img src="{{ url_for('static', filename='icons2.png') }}">
+                    <img alt = "I accept your input" src="{{ url_for('static', filename='icons2.png') }}">
                     <div class="speech-bubble right">
-                        <input type="text" placeholder="Guess number!!" id="number" name="number" oninput="validateNumberInput()" onfocus="removePlaceholder()" onblur="restorePlaceholder()">
+                        <input title="Here, you can enter your input number" type="text" placeholder="Guess number!!" id="number" name="number" oninput="validateNumberInput()" onfocus="removePlaceholder()" onblur="restorePlaceholder()">
                     </div>
                 </div>
             </div>
         
-            <button type="submit" id="checkNumberButton">Play</button>
-            <button type="button" id="restartButton" onclick="restartGame()">Restart</button>
+            <button title="This button submits your input number" type="submit" id="checkNumberButton">Play</button>
+            <button title="This button starts a new game" type="button" id="restartButton" onclick="restartGame()">Restart</button>
         </form>
     </div>    
 

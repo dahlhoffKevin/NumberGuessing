@@ -13,20 +13,20 @@
             
             <div class="form-group mb-3">
                 <label for="playerName">Player Name</label>
-                <input type="text" class="form-control" id="playerName" name="playername" placeholder="Enter your name" required>
+                <input title="Here, you can enter your player name" type="text" class="form-control" id="playerName" name="playername" placeholder="Enter your name" required>
             </div>
             
             <div class="form-group mb-3">
                 <label for="email">Email Address</label>
-                <input type="email" class="form-control" id="email" name="mailaddress" aria-describedby="emailHelp" placeholder="Enter email" required>
+                <input title="Here, you can enter your email adress" type="email" class="form-control" id="email" name="mailaddress" aria-describedby="emailHelp" placeholder="Enter email" required>
             </div>
             
             <div class="form-group mb-3">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                <input title="Here, you can enter your password" type="password" class="form-control" id="password" name="password" placeholder="Password" required>
             </div>
             
-            <button type="submit" class="btn btn-primary w-100">Register</button>
+            <button title="This button submits your registration data" type="submit" class="btn btn-primary w-100">Register</button>
             <div class="text-center mt-3"></div>
                 <p>Already have an account? <a href="{{ url_for('login') }}">Sign in here</a></p>
             </div>

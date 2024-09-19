@@ -1,18 +1,12 @@
 // JavaScript function to reset the game
 function restartGame() {
-    document.getElementById('playerNameInput').value = ''; // Clear player name input
     document.getElementById('number').value = ''; // Clear guessing number input
     document.getElementById('number').placeholder = 'Guess number!!'; // Restore placeholder
-    document.getElementById('playerNameInput').placeholder = 'Player name...';
   }
 
   // Placeholder removal and restoration for playerNameInput
   function removePlaceholderPlayerName() {
     document.getElementById('playerNameInput').placeholder = '';
-  }
-
-  function restorePlaceholderPlayerName() {
-    document.getElementById('playerNameInput').placeholder = 'Player name...';
   }
 
   // Placeholder removal and restoration for guessing number input

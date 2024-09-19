@@ -3,11 +3,26 @@
 <head>
     <title>Guessing Number</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
 </head>
 <body>
     <div class="wrapper">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div>
+            {% for category, message in messages %}
+                {% if category == 'success' %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
         <form action="{{ url_for('submit_attempt') }}" method="POST">
-            <input type="text" id="playerNameInput" name="playerName" placeholder="Player name..." onfocus="removePlaceholderPlayerName()" onblur="restorePlaceholderPlayerName()">
+            <h4>Player: {{ playername }}</h4>
             <div class="container">
                 <div class="character">
                     <img src="{{ url_for('static', filename='icons1.png') }}">
@@ -24,10 +39,18 @@
             </div>
         
             <button type="submit" id="checkNumberButton">Play</button>
-            <button type="button" id="restartButton" onclick="restartGame()">Restart Game</button>
+            <button type="button" id="restartButton" onclick="restartGame()">Restart</button>
         </form>
     </div>    
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <!-- Bootstrap JS and its dependencies -->
+     <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap 5 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

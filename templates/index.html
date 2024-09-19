@@ -7,27 +7,32 @@
 </head>
 <body>
     <div class="wrapper">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <div>
-            {% for category, message in messages %}
-                {% if category == 'success' %}
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div>
+                    {% for category, message in messages %}
+                        {% if category == 'success' %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        {% elif category == 'error' %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-                {% endif %}
-            {% endfor %}
-            </div>
-        {% endif %}
-        {% endwith %}
+            {% endif %}
+            {% endwith %}
         <form action="{{ url_for('submit_attempt') }}" method="POST">
             <h4>Player: {{ playername }}</h4>
             <div class="container">
                 <div class="character">
                     <img src="{{ url_for('static', filename='icons1.png') }}">
                     <div class="speech-bubble">
-                        <input type="text" value="zu klein!" id="result" readonly>
+                        <input type="text" value="{{ result }}" id="result" readonly>
                     </div>
                 </div>
                 <div class="character">

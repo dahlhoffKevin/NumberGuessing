@@ -2,9 +2,10 @@ from unittest.mock import MagicMock
 import pytest
 import main 
 from security import Security
-import sql
+from sql.Sql import SQL
+import re
 
-
+#"C:\Users\julia\OneDrive\Julian\DATA_TBS1\REPOS\NumberGuessing\NumberGuessing\sql"
 
 @pytest.fixture
 def client():
@@ -66,37 +67,53 @@ def test_success():
     assert result == True, msg  
 
 
-def test_Security():
-    functionName: str = "test_Security: "; msg: str =  f"{functionName}success"; result: bool = True
+def test_encrypt():
+    functionName: str = "test_encrypt: "; msg: str =  f"{functionName}success"; result: bool = True
     try:
         security: Security = Security()
-        original_data: str = "Geheime Nachricht"
-        encrypted_data = security.encrypt(original_data)    
-        assert security.is_encrypted(encrypted_data) == True, "check is_encrypted"
-        decrypted_data: str = security.decrypt(encrypted_data)
-        assert security.is_encrypted(decrypted_data) == False, "check is_encrypted"
+        encrypted_data: str = security.encrypt("Geheime Nachricht")    
+        assert security.is_encrypted(encrypted_data) == True, "assert is_encrypted returned false"
 
     except Exception as err: result = False; msg = f"{functionName}failed, {err}"
     assert result == True, msg  
 
-def test_encrypt():
-    pass
-
 def test_decrypt():
-    pass
+    functionName: str = "test_decrypt: "; msg: str =  f"{functionName}success"; result: bool = True
+    try:
+        security: Security = Security()
+        decrypted_data: str = security.decrypt("gAAAAABm9SlalZtrj6yzWGxjKwjYQtg99MESRT4Q_Wn9UsQ4YOJGwIK-jfPdb8qKxAXdv2V2dja9gzXljRJr1jwF2MBTKnV7LnWQnioFmwkwAeq5PTKIngM=")
+        assert security.is_encrypted(decrypted_data) == False, "assert is_encrypted returned false"
+
+    except Exception as err: result = False; msg = f"{functionName}failed, {err}"
+    assert result == True, msg  
 
 def test_is_encrypted():
-    pass
+    functionName: str = "test_is_encrypted: "; msg: str =  f"{functionName}success"; result: bool = True
+    try:
+        security: Security = Security()
+        assert security.is_encrypted("gAAAAABm9SlalZtrj6yzWGxjKwjYQtg99MESRT4Q_Wn9UsQ4YOJGwIK-jfPdb8qKxAXdv2V2dja9gzXljRJr1jwF2MBTKnV7LnWQnioFmwkwAeq5PTKIngM=") == True, "check is_encrypted"
+        assert security.is_encrypted("Geheime Nachricht") == True, "assert is_encrypted failed"
+
+    except Exception as err: result = False; msg = f"{functionName}failed, {err}"
+    assert result == True, msg  
 
 def test_BuildHash():
-    pass
-
-def test_SQL():
-    # make sql a global instance
-    pass
+    functionName: str = "test_BuildHash: "; msg: str =  f"{functionName}success"; result: bool = True
+    try:
+        security: Security = Security()
+        myHash: str = Security.BuildHash("please hash me")
+        assert len(myHash) == 64, "invalid hash value"
+        assert re.match(r'^[a-fA-F0-9]{64}$', myHash) is not None, "invalid hash value"
+    except Exception as err: result = False; msg = f"{functionName}failed, {err}"
+    assert result == True, msg  
 
 def test_open_conn():
-    pass
+    functionName: str = "test_BuildHash: "; msg: str =  f"{functionName}success"; result: bool = True
+    try:
+        sql: SQL = SQL("C:/Users/julia/OneDrive/Julian/DATA_TBS1/REPOS/NumberGuessing/NumberGuessing/instance/players.db")
+        sql.open_conn()
+    except Exception as err: result = False; msg = f"{functionName}failed, {err}"
+    assert result == True, msg  
 
 def test_create_game():
     pass
@@ -116,7 +133,7 @@ def test_update():
 def test_delete():
     pass
 
-test_Security()
+test_open_conn()
 # def test_XXXX():
 #     pass
 

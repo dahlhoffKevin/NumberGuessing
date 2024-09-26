@@ -57,6 +57,7 @@ def test_submit_attempt():
     except Exception as err: result = False; msg = f"{functionName}failed, {err}"
     assert result == True, msg  
 
+
 def test_success():
     functionName: str = "test_success: "; msg: str =  f"{functionName}success"; result: bool = True
     try:
@@ -66,8 +67,17 @@ def test_success():
 
 
 def test_Security():
-    # make security a global instance
-    pass
+    functionName: str = "test_Security: "; msg: str =  f"{functionName}success"; result: bool = True
+    try:
+        security: Security = Security()
+        original_data: str = "Geheime Nachricht"
+        encrypted_data = security.encrypt(original_data)    
+        assert security.is_encrypted(encrypted_data) == True, "check is_encrypted"
+        decrypted_data: str = security.decrypt(encrypted_data)
+        assert security.is_encrypted(decrypted_data) == False, "check is_encrypted"
+
+    except Exception as err: result = False; msg = f"{functionName}failed, {err}"
+    assert result == True, msg  
 
 def test_encrypt():
     pass
@@ -106,7 +116,7 @@ def test_update():
 def test_delete():
     pass
 
-test_success()
+test_Security()
 # def test_XXXX():
 #     pass
 

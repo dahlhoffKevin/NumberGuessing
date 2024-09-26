@@ -100,7 +100,7 @@ def login():
                 return redirect(url_for('login'))
 
             db_password = player[3]
-            print(db_password);
+            print(db_password)
             # Check the password
             if check_password_hash(db_password, password):
                 flash(f'Welcome {player[1]}! You can play now.', 'success')

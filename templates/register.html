@@ -1,0 +1,29 @@
+{% extends "master.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <form style="width: 100%; max-width: 500px;" method="POST" action="{{ url_for('register') }}">
+        <h2 class="text-center mb-4">Register</h2>
+        
+        <div class="form-group mb-3">
+            <label for="playerName">Player Name</label>
+            <input type="text" class="form-control" id="playerName" name="playername" placeholder="Enter your name" required>
+        </div>
+        
+        <div class="form-group mb-3">
+            <label for="email">Email Address</label>
+            <input type="email" class="form-control" id="email" name="mailaddress" aria-describedby="emailHelp" placeholder="Enter email" required>
+        </div>
+        
+        <div class="form-group mb-3">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary w-100">Register</button>
+        <div class="text-center mt-3"></div>
+            <p>Already have an account? <a href="{{ url_for('login') }}">Sign in here</a></p>
+        </div>
+    </form>
+</div>
+{% endblock %}

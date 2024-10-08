@@ -1,0 +1,13 @@
+{% extends "master.html" %}
+
+{% block content %}
+<div class="center-content">
+  <div>
+    <h1>Welcome to the Guessing Number Game!</h1>
+    <p>Try your luck and guess the number. Will you win or lose? Let's find out!</p>
+    
+    <!-- "Let's Get Started" button -->
+    <a href="{{ url_for('login') }}" class="btn btn-primary">Let's Get Started</a>
+  </div>
+</div>
+{% endblock %}

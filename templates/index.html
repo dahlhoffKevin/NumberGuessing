@@ -1,0 +1,144 @@
+{% extends "master.html" %}
+
+{% block content %}
+
+<style>
+
+#number, #result {
+  margin-top: 20px;
+  font-size: 24px;
+  text-align: center;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Space between characters */
+  justify-content: center; /* Center content horizontally */
+}
+
+.character {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+img {
+  width: 150px;
+}
+
+.speech-bubble {
+  position: relative;
+  background: #d6edf5;
+  border-radius: 20px;
+  padding: 10px 20px;
+  display: inline-block;
+  font-size: 24px;
+  color: #000;
+  margin: 10px 0; /* Space between speech bubble and image */
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid #d6edf5;
+}
+
+.speech-bubble.right::after {
+  left: auto;
+  right: 20px;
+  border-top: 20px solid #d6edf5;
+}
+
+input[type="text"] {
+  border: none;
+  background: none;
+  font-size: 24px;
+  width: 200px;
+  text-align: center;
+  outline: none;
+  color: #000;
+}
+
+#restartButton, #checkNumberButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 50px); /* Reduced height to move the content upwards */
+  margin-top: 10px; /* Reduced top margin */
+}
+
+.form-container {
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto; /* Center container horizontally */
+}
+</style>
+
+<div class="wrapper">
+  <div class="form-container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div>
+            {% for category, message in messages %}
+                {% if category == 'success' %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% elif category == 'error' %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+    
+    <form action="{{ url_for('submit_attempt') }}" method="POST">
+        <div class="container">
+            <div class="character">
+                <img src="{{ url_for('static', filename='icons1.png') }}">
+                <div class="speech-bubble">
+                    <input type="text" value="{{ result }}" id="result" readonly>
+                </div>
+            </div>
+            <div class="character">
+                <img src="{{ url_for('static', filename='icons2.png') }}">
+                <div class="speech-bubble right">
+                    <input type="text" placeholder="Guess number!!" id="number" name="number" oninput="validateNumberInput()" onfocus="removePlaceholder()" onblur="restorePlaceholder()">
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" id="checkNumberButton">Play</button>
+        <button type="button" id="restartButton" onclick="restartGame()">Restart</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

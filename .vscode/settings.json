@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "NumberGuessing",
+            "database": "${workspaceFolder:Python Flask}/sql/numberGuessing.db"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}

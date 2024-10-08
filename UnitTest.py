@@ -4,6 +4,8 @@ import main
 from security import Security
 from sql.Sql import SQL
 import re
+import sqlite3
+import uuid
 
 #"C:\Users\julia\OneDrive\Julian\DATA_TBS1\REPOS\NumberGuessing\NumberGuessing\sql"
 
@@ -116,7 +118,13 @@ def test_open_conn():
     assert result == True, msg  
 
 def test_create_game():
-    pass
+    functionName: str = "test_BuildHash: "; msg: str =  f"{functionName}success"; result: bool = True
+    try:
+        sql: SQL = SQL("C:/Users/julia/OneDrive/Julian/DATA_TBS1/REPOS/NumberGuessing/NumberGuessing/instance/players.db")
+        con: sqlite3.Connection  = sql.open_conn()
+        sql.create_game(con, str(uuid.uuid4()), str(uuid.uuid4()), 0)
+    except Exception as err: result = False; msg = f"{functionName}failed, {err}"
+    assert result == True, msg  
 
 def test_createDatabaseFromFile():
     pass
@@ -133,7 +141,7 @@ def test_update():
 def test_delete():
     pass
 
-test_open_conn()
+test_create_game()
 # def test_XXXX():
 #     pass
 
